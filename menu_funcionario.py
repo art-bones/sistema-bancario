@@ -1,11 +1,13 @@
 # arquivo: main.py
-from operacoes import sacar, depositar, mostrar_extrato, obter_conta, criar_conta, cadastrar_usuario, buscar_usuario_por_cpf
+from operacoes import obter_conta, criar_conta, cadastrar_usuario, buscar_usuario_por_cpf, Conta
 
+tentativas = 3
 def main():
-    while True:
+    global tentativas
+    while tentativas > 0:
         print("\nOpções:")
         print("1. Cadastrar usuario")
-        print("2. Buscar")
+        print("2. Buscar usuario")
         print("3. Criar conta")
         print("4. Acessar conta")
         print("5. Sair")
@@ -22,11 +24,12 @@ def main():
             criar_conta()  
 
         elif escolha == "4":
-            numero_conta = input("Digite o número da conta: ")
-            conta = obter_conta(numero_conta)
+            numero = input("Digite o número da conta: ")
+            conta = obter_conta(numero)
             if conta:
                 interagir_com_conta(conta)
             else:
+                tentativas -= 1
                 print("Conta não encontrada.")
 
         elif escolha == "5":
@@ -37,7 +40,7 @@ def main():
 
 def interagir_com_conta(conta):
     while True:
-        print("Saldo atual: R$ {conta.saldo}")
+        print("Saldo atual: R$ ")
         print("\nOpções:")
         print("1. Depositar")
         print("2. Sacar")
@@ -47,11 +50,11 @@ def interagir_com_conta(conta):
         escolha = input("Escolha uma opção (1/2/3/4): ")
 
         if escolha == "1":
-            depositar(conta)
+            conta.depositar()
         elif escolha == "2":
-            sacar(conta)
+            conta.sacar()
         elif escolha == "3":
-            mostrar_extrato(conta)
+            conta.mostrar_extrato()
         elif escolha == "4":
             print("Voltando ao menu principal...")
             break
