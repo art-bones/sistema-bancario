@@ -1,6 +1,6 @@
 # arquivo: main.py
 from operacoes import obter_conta, criar_conta, cadastrar_usuario, buscar_usuario_por_cpf, Conta
-
+# Função que gera um menu interativo no terminal, acessa as funções de criação de usuarios e contas, e o acesso a uma conta através do seu número.
 tentativas = 3
 def main():
     global tentativas
@@ -37,10 +37,10 @@ def main():
             break
         else:
             print("Opção inválida. Tente novamente.")
-
+# Função que manipula uma conta
 def interagir_com_conta(conta):
     while True:
-        print("Saldo atual: R$ ")
+        print(f"Saldo atual: R$ {conta.get_saldo()}")
         print("\nOpções:")
         print("1. Depositar")
         print("2. Sacar")
